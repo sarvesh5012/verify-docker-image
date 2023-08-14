@@ -37,16 +37,12 @@ pipeline {
                #!/bin/bash
                repository_name=$IMAGE_REPO_NAME
                specific_tag=$TAG_TO_CHECK
+               repository_uri=$REPOSITORY_URI
                chmod +x test.sh
                set +x
                result=$(. ./test.sh)
                set -x
                echo $result
-               if [ $result = true ]; then
-                   echo $specific_tag exits in the repo
-               else
-                   docker build -t ${REPOSITORY_URI}:${TAG_TO_CHECK} -f Dockerfile .
-               fi
               '''
         
     }
@@ -55,3 +51,8 @@ pipeline {
     
 }
 }
+            //    if [ $result = true ]; then
+            //        echo $specific_tag exits in the repo
+            //    else
+            //        docker build -t ${REPOSITORY_URI}:${TAG_TO_CHECK} -f Dockerfile .
+            //    fi
