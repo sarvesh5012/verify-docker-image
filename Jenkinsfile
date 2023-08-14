@@ -45,7 +45,7 @@ pipeline {
                if [ $result = true ]; then
                    echo $specific_tag exits in the repo
                else
-                   docker build -t ${REPOSITORY_URI}:${TAG_TO_CHECK} -f Dockerfile.dev .
+                   docker build -t ${REPOSITORY_URI}:${TAG_TO_CHECK} -f Dockerfile .
                fi
               '''
         
