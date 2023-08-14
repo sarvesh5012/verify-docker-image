@@ -43,6 +43,7 @@ pipeline {
                result=$(. ./test.sh)
                set -x
                echo $result
+               
               '''
         
     }

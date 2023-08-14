@@ -49,9 +49,11 @@ if [ -n "$tag_present" ]; then
     # echo "Tag '$specific_tag' is present in the repository."
     if [ "$last_string_tag" = "snapshot" ]; then
         docker build -t $repository_uri:$specific_tag -f Dockerfile .
+        docker push $repository_uri:$specific_tag
     else
         echo $specific_tag version already exists upgrade the version
     fi
 else
    docker build -t $repository_uri:$specific_tag -f Dockerfile .
+   docker push $repository_uri:$specific_tag
 fi

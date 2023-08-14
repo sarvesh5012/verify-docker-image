@@ -1,1 +1,1 @@
-test-snapshot
+v1-snapshot
