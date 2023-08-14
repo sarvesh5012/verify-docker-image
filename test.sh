@@ -48,6 +48,7 @@ echo $last_string_tag
 if [ -n "$tag_present" ]; then
     # echo "Tag '$specific_tag' is present in the repository."
     if [ "$last_string_tag" = "snapshot" ]; then
+        aws ecr batch-delete-image --repository-name $repository_name --image-ids imageTag=$specific_tag
         docker build -t $repository_uri:$specific_tag -f Dockerfile .
         docker push $repository_uri:$specific_tag
     else
