@@ -4,6 +4,9 @@ FROM alpine:3.14
 # Install Apache
 RUN apk --no-cache add apache2
 
+# Copy custom HTML file to Apache's document root
+COPY index.html /var/www/localhost/htdocs/
+
 # Expose the default Apache port
 EXPOSE 80
 
