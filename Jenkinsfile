@@ -1,4 +1,5 @@
 pipeline {
+    agent none
      environment {
         AWS_ACCOUNT_ID=sh(returnStdout: true, script: 'aws sts get-caller-identity --query "Account" --output text').trim()
         AWS_DEFAULT_REGION="us-east-1"
