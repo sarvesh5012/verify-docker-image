@@ -20,7 +20,7 @@ if [ -n "$tag_present" ]; then
         docker build -t $repository_uri:$specific_tag -f Dockerfile .
         docker push $repository_uri:$specific_tag
     else
-        echo $specific_tag version already exists upgrade the version
+        echo version already exists upgrade the version
         echo false
     fi
 else
