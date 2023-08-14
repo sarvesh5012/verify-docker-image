@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
      environment {
         AWS_ACCOUNT_ID=sh(returnStdout: true, script: 'aws sts get-caller-identity --query "Account" --output text').trim()
         AWS_DEFAULT_REGION="us-east-1"
@@ -32,6 +32,7 @@ pipeline {
     
     stage("test-tags-then build"){
         steps{
+            script{
         sh '''
                #!/bin/bash
                repository_name=$IMAGE_REPO_NAME
@@ -49,6 +50,7 @@ pipeline {
               '''
         
     }
+        }
     }
     
 }
