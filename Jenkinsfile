@@ -15,7 +15,9 @@ pipeline {
     }
     stages {
     stage("git Checkout"){
+        steps{
         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sarvesh5012/verify-docker-image.git']])
+    }
     }
     
     stage('Logging into AWS ECR') {
@@ -28,6 +30,7 @@ pipeline {
         }
     
     stage("test-tags-then build"){
+        steps{
         sh '''
                #!/bin/bash
                repository_name=$IMAGE_REPO_NAME
@@ -45,9 +48,7 @@ pipeline {
               '''
         
     }
-    
-    stage("verify the version of image tag"){
-        
     }
+    
 }
 }
