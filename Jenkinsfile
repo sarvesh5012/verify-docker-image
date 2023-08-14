@@ -3,7 +3,7 @@ pipeline {
      environment {
         AWS_ACCOUNT_ID=sh(returnStdout: true, script: 'aws sts get-caller-identity --query "Account" --output text').trim()
         AWS_DEFAULT_REGION="us-east-1"
-        IMAGE_REPO_NAME="presto-repo-test"
+        IMAGE_REPO_NAME="test-tags"
         // IMAGE_TAG="${GIT_COMMIT}"
         // CLUSTER_NAME = "segue-om-cluster-dev"
         // SERVICE_NAME = "segue-om-service-dev"
@@ -43,7 +43,7 @@ pipeline {
                result=$(. ./test.sh)
                set -x
                echo $result
-               
+
               '''
         
     }
