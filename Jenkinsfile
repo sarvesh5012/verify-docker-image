@@ -48,6 +48,7 @@ pipeline {
                    echo $specific_tag exits in the repo
                else
                    docker build -t ${REPOSITORY_URI}:${TAG_TO_CHECK} -f Dockerfile .
+                   docker push $repository_uri:$specific_tag
                fi
 
 
