@@ -43,13 +43,13 @@ pipeline {
                result=$(. ./test.sh)
                set -x
                echo $result
-               if [ $result == true ]; then
-                   error "$specific_tag exits in the repo"
-                   
+
+               if [ $result = false ]; then
+                   echo $specific_tag exits in the repo
                else
                    docker build -t ${REPOSITORY_URI}:${TAG_TO_CHECK} -f Dockerfile .
-                   docker push $repository_uri:$specific_tag
                fi
+
 
               '''
         

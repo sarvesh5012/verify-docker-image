@@ -16,9 +16,17 @@ last_string_tag=$(echo $tag_present | rev | cut -d - -f 1 | rev)
 if [ -n "$tag_present" ]; then
     # echo "Tag '$specific_tag' is present in the repository."
     if [ "$last_string_tag" = "snapshot" ]; then
+
+        aws ecr batch-delete-image --repository-name $repository_name --image-ids imageTag=$specific_tag
+        docker build -t $repository_uri:$specific_tag -f Dockerfile .
+        docker push $repository_uri:$specific_tag
+    else
+        # echo $specific_tag version already exists upgrade the version
+
         # aws ecr batch-delete-image --repository-name $repository_name --image-ids imageTag=$specific_tag
         # docker build -t $repository_uri:$specific_tag -f Dockerfile .
         # docker push $repository_uri:$specific_tag
+
         echo false
     else
         # echo $specific_tag version already exists upgrade the version
